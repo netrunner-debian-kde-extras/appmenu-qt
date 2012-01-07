@@ -1,0 +1,26 @@
+# 0.2.4 - 2011.10.20
+- Correctly fix Alt bug (LP BUG 877791).
+
+# 0.2.3 - 2011.10.20
+- Prevent crash when pressing Alt if no menu has been exposed (LP BUG 877791).
+
+# 0.2.2 - 2011.08.31
+- Include a copy of the Qt 4.7.3 patch.
+- Update "Status" dbusmenu property, making it possible to show menubar in Unity panel by pressing Alt (LP BUG 737419).
+- Improve robustness: menubar gets correctly exposed and unexposed when menubar renderer is started or stopped (LP BUG 838115).
+
+# 0.2.1 - 2011.07.01
+- Add LGPL 2.1 file and Nokia LGPL exception file.
+
+# 0.2.0 - 2011.06.23
+- Change licence to LGPLv3.
+- Updated to work with upcoming 4.8 version of Qt.
+
+# 0.1.2 - 2011.01.14
+- org.ayatana => com.canonical.
+
+# 0.1.1 - 2011.01.13
+- No need for qmenubarimpl_p.h.
+
+# 0.1.0 - 2011.01.11
+- First release.
