@@ -1,0 +1,11 @@
+#!/usr/bin/make -f
+# -*- makefile -*-
+
+# export DH_VERBOSE=1
+export DH_OPTIONS
+
+%:
+	dh $@
+
+override_dh_installchangelogs:
+	dh_installchangelogs NEWS

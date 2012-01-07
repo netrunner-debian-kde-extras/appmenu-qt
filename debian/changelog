@@ -1,0 +1,5 @@
+colibri (0.2.2-1) unstable; urgency=low
+
+  * Initial release. (Closes: #651090)
+
+ -- Ritesh Raj Sarraf <rrs@debian.org>  Sat, 17 Dec 2011 07:44:49 +0530
