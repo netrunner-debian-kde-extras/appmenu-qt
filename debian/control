@@ -11,4 +11,7 @@ Package: appmenu-qt
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: application menu for qt
- appmenu for qt
+ appmenu provides you with an integrated application menu in your
+ global menu bar
+ .
+ appmenu-qt will work for applications designed for QT and KDE
