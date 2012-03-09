@@ -1,5 +1,5 @@
 appmenu-qt (0.2.4-1) UNRELEASED; urgency=low
 
-  * Initial release. (Closes: #XXXXXX)
+  * Initial release. (Closes: #663204)
 
- -- Ritesh Raj Sarraf <rrs@debian.org>  Sat, 07 Jan 2012 13:25:04 +0530
+ -- Ritesh Raj Sarraf <rrs@debian.org>  Fri, 09 Mar 2012 19:30:34 +0530
