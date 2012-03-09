@@ -9,7 +9,7 @@ Homepage: https://launchpad.net/appmenu-qt
 
 Package: appmenu-qt
 Architecture: any
-Depends: ${misc:Depends}
+Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: application menu for qt
  appmenu provides you with an integrated application menu in your
  global menu bar
