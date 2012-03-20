@@ -37,9 +37,9 @@ static const char* REGISTRAR_SERVICE = "com.canonical.AppMenu.Registrar";
 static const char* REGISTRAR_PATH    = "/com/canonical/AppMenu/Registrar";
 static const char* REGISTRAR_IFACE   = "com.canonical.AppMenu.Registrar";
 
-#define LOG qDebug() << __FUNCTION__
-#define LOG_VAR(x) qDebug() << __FUNCTION__ << #x ":" << x
-#define WARN qWarning() << __FUNCTION__
+#define LOG qDebug() << "appmenu-qt:" << __FUNCTION__ << __LINE__
+#define LOG_VAR(x) qDebug() << "appmenu-qt:" << __FUNCTION__ << __LINE__ << #x ":" << x
+#define WARN qWarning() << "appmenu-qt:" << __FUNCTION__ << __LINE__
 
 /**
  * The menubar adapter communicates over DBus with the menubar renderer.
@@ -59,6 +59,8 @@ public:
     void popupAction(QAction*);
 
     void setAltPressed(bool pressed);
+
+    void resetRegisteredWinId();
 
 private:
     uint m_registeredWinId;
@@ -169,9 +171,15 @@ bool AppMenuPlatformMenuBar::shortcutsHandledByNativeMenuBar() const
 
 bool AppMenuPlatformMenuBar::menuBarEventFilter(QObject*, QEvent* event)
 {
-    if (event->type() == QEvent::WinIdChange) {
+    if (event->type() == QEvent::WinIdChange || event->type() == QEvent::Show) {
         if (isNativeMenuBar() && m_adapter) {
             QMetaObject::invokeMethod(this, "registerWindow", Qt::QueuedConnection);
+        }
+    }
+
+    if (event->type() == QEvent::Hide) {
+        if (isNativeMenuBar() && m_adapter) {
+            m_adapter->resetRegisteredWinId();
         }
     }
 
@@ -358,6 +366,11 @@ bool MenuBarAdapter::registerWindow()
     QVariant path = QVariant::fromValue<QDBusObjectPath>(QDBusObjectPath(m_objectPath));
     host.asyncCall(QLatin1String("RegisterWindow"), QVariant(winId), path);
     return true;
+}
+
+void MenuBarAdapter::resetRegisteredWinId()
+{
+    m_registeredWinId = 0;
 }
 
 void MenuBarAdapter::addAction(QAction* action, QAction* before)

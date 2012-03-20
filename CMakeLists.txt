@@ -4,7 +4,7 @@ cmake_minimum_required(VERSION 2.8.0)
 # Versions
 set(appmenu_qt_VERSION_MAJOR 0)
 set(appmenu_qt_VERSION_MINOR 2)
-set(appmenu_qt_VERSION_PATCH 4)
+set(appmenu_qt_VERSION_PATCH 5)
 set(appmenu_qt_VERSION ${appmenu_qt_VERSION_MAJOR}.${appmenu_qt_VERSION_MINOR}.${appmenu_qt_VERSION_PATCH})
 
 # Packaging

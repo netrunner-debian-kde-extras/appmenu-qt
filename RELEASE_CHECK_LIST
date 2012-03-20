@@ -15,7 +15,7 @@ bzr ci
 # Create and test tarball
 make distcheck
 
-# Test with KDE trunk
+# Run manual tests
 
 # If ok, create tag
 tag=x.y.z
