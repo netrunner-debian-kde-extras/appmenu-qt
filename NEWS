@@ -1,3 +1,7 @@
+# 0.2.5 - 2012.03.05
+- Register window again when it comes back after having been hidden (LP BUG 775278).
+- Move call to link_directories() before add_library().
+
 # 0.2.4 - 2011.10.20
 - Correctly fix Alt bug (LP BUG 877791).
 

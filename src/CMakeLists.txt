@@ -17,12 +17,12 @@ include_directories(
 
 qt4_automoc(${appmenu_qt_SRCS})
 
-add_library(appmenu-qt MODULE
-    ${appmenu_qt_SRCS}
-    )
-
 link_directories(
     ${DBUSMENUQT_LIBRARY_DIRS}
+    )
+
+add_library(appmenu-qt MODULE
+    ${appmenu_qt_SRCS}
     )
 
 target_link_libraries(appmenu-qt

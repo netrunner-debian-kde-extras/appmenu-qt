@@ -1,0 +1,43 @@
+# setup
+- Menubar renderer (unity panel or plasma-widget-menubar) running
+
+# mouseHandling
+steps:
+- Start qtconfig => renderer show "File Help"
+- Click "File" => file menu opens
+- Click "Exit" => qtconfig stops
+
+# mouseScrubbling
+steps:
+- Start qtconfig
+- Click "File" => file menu opens
+- Move mouse to "Help" => file menu closes, help menu opens
+
+# mnemonic
+steps:
+- Start qtconfig
+- Press Alt+f => file menu opens
+
+# emptyMenuBar
+bug: https://bugs.launchpad.net/ubuntu/+source/appmenu-qt/+bug/877791
+steps:
+- Start fbreader
+- Press Alt => nothing should happen (bug report tells app crashed)
+
+# robustness
+steps:
+- Stop renderer
+- Start qtconfig => menubar is in window
+- Start renderer => qtconfig menubar moves to renderer
+- Stop renderer => menubar moves back to qtconfig window
+- Start renderer => qtconfig menubar moves to renderer
+
+# hiddenWindows
+bug: https://bugs.launchpad.net/appmenu-qt/+bug/775278
+requirements: unity-panel-service renderer
+steps:
+- Start Clementine
+- Minimize it to tray
+- Wait more than 5 seconds
+- Restore it
+  => Menubar should still be there (bug report tells menubar disappears)
