@@ -73,6 +73,7 @@ private:
     void createMenuBar();
     void destroyMenuBar();
     void setAltPressed(bool);
+    bool checkForOtherMenuBars(QWidget* window, QMenuBar* menuBar);
 
 private Q_SLOTS:
     void slotMenuBarServiceChanged(const QString&, const QString&, const QString&);

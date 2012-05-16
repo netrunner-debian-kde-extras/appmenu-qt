@@ -41,6 +41,18 @@ static const char* REGISTRAR_IFACE   = "com.canonical.AppMenu.Registrar";
 #define LOG_VAR(x) qDebug() << "appmenu-qt:" << __FUNCTION__ << __LINE__ << #x ":" << x
 #define WARN qWarning() << "appmenu-qt:" << __FUNCTION__ << __LINE__
 
+#if 0
+// Debug helper
+static QString logMenuBar(QMenuBar* bar)
+{
+    QStringList lst;
+    Q_FOREACH(QAction* action, bar->actions()) {
+        lst << action->text();
+    }
+    return lst.join("|");
+}
+#endif
+
 /**
  * The menubar adapter communicates over DBus with the menubar renderer.
  * It is responsible for registering windows to it and exposing their menubars
@@ -118,7 +130,9 @@ void AppMenuPlatformMenuBar::handleReparent(QWidget* oldParent, QWidget* newPare
     if (isNativeMenuBar()) {
         if (m_adapter) {
             if (oldWindow != newWindow) {
-                m_adapter->registerWindow();
+                if (checkForOtherMenuBars(newWindow, m_menuBar)) {
+                    m_adapter->registerWindow();
+                }
             }
         } else {
             createMenuBar();
@@ -285,6 +299,10 @@ void AppMenuPlatformMenuBar::createMenuBar()
         return;
     }
 
+    if (!checkForOtherMenuBars(m_menuBar->window(), m_menuBar)) {
+        return;
+    }
+
     m_adapter = new MenuBarAdapter(m_menuBar, m_objectPath);
     if (!m_adapter->registerWindow()) {
         destroyMenuBar();
@@ -306,6 +324,53 @@ void AppMenuPlatformMenuBar::destroyMenuBar()
 {
     delete m_adapter;
     m_adapter = 0;
+}
+
+
+inline int computeWidgetDepth(QWidget* widget)
+{
+    int depth = 0;
+    for (; widget; widget = widget->parentWidget(), ++depth) {}
+    return depth;
+}
+
+/**
+ * Check if the window contains other menubars. If it is the case, only allow
+ * the one which has the shortest parent->child depth to be exposed.
+ * Returns true if @a newMenuBar should be exposed.
+ */
+bool AppMenuPlatformMenuBar::checkForOtherMenuBars(QWidget* window, QMenuBar* newMenuBar)
+{
+    Q_ASSERT(window);
+    Q_ASSERT(newMenuBar);
+    QList<QMenuBar*> lst = window->findChildren<QMenuBar*>();
+    Q_ASSERT(!lst.isEmpty());
+    if (lst.count() == 1) {
+        // Only one menubar, assume it is newMenuBar
+        return true;
+    }
+
+    // Multiple menubars, compute their depths
+    QMultiMap<int, QMenuBar*> depths;
+    Q_FOREACH(QMenuBar* menuBar, lst) {
+        const int depth = computeWidgetDepth(menuBar);
+        depths.insert(depth, menuBar);
+    }
+
+    QMultiMap<int, QMenuBar*>::Iterator it = depths.begin();
+    if (it.value() == newMenuBar) {
+        // newMenuBar should be exposed
+        QMultiMap<int, QMenuBar*>::Iterator end = depths.end();
+        ++it;
+        for (;it != end; ++it) {
+            it.value()->setNativeMenuBar(false);
+        }
+        return true;
+    } else {
+        // newMenuBar should not be exposed
+        setNativeMenuBar(false);
+        return false;
+    }
 }
 
 ///////////////////////////////////////////////////////////
