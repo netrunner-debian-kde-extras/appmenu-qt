@@ -1,3 +1,6 @@
+# 0.2.6 - 2012.04.05
+- Only allow one menubar to be exposed per window (LP BUG 937892).
+
 # 0.2.5 - 2012.03.05
 - Register window again when it comes back after having been hidden (LP BUG 775278).
 - Move call to link_directories() before add_library().
