@@ -1,11 +1,13 @@
 appmenu-qt (0.2.6-1) unstable; urgency=low
 
+  * New upstream release
   * Upload to unstable
   * [0750e3e] Imported Upstream version 0.2.6
   * [ae8944c] update standards version to 3.9.3
-    - [b8a131b] update copyright to machine readable format 1.0
+  * [b8a131b] update copyright to machine readable format 1.0
+  * [d55945f] fix lintian warning on the machine readalbe (1.0) format
 
- -- Ritesh Raj Sarraf <rrs@debian.org>  Thu, 17 May 2012 01:10:32 +0530
+ -- Ritesh Raj Sarraf <rrs@debian.org>  Thu, 17 May 2012 01:36:09 +0530
 
 appmenu-qt (0.2.5-1) experimental; urgency=low
 
