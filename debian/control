@@ -4,7 +4,7 @@ Priority: extra
 Maintainer: Debian KDE Extras Team <pkg-kde-extras@lists.alioth.debian.org>
 Uploaders: Ritesh Raj Sarraf <rrs@debian.org>
 Build-Depends: debhelper (>= 7.0.50~), libqt4-dev (>= 4:4.8), kdelibs-bin, cmake, kdelibs5-dev, kde-workspace-dev, libx11-dev, libxext-dev, pkg-config, libdbusmenu-qt-dev (>= 0.9.0)
-Standards-Version: 3.9.2
+Standards-Version: 3.9.3
 Homepage: https://launchpad.net/appmenu-qt
 Vcs-Git: git://git.debian.org/pkg-kde/kde-extras/appmenu-qt.git
 Vcs-Browser: http://git.debian.org/?p=pkg-kde/kde-extras/appmenu-qt.git
