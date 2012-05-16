@@ -24,10 +24,9 @@ Copyright: Aurélien Gâteau <agateau@kde.org>
  can be found in /usr/share/common-licenses/LGPL-3
 
 
-Files: src/private/qabstractplatformmenubar_p.h
-	patches/qmenubar-plugin-system-4.7.3.diff
-License: LGPL
+Files: src/private/qabstractplatformmenubar_p.h patches/qmenubar-plugin-system-4.7.3.diff
 Copyright: 2010 Nokia Corporation and/or its subsidiary(-ies).
+License: LGPL
  This package is free software; you can redistribute it and/or modify
  it under the terms of the GNU Lesser General Public License version 2.1, as
  published by  the Free Software Foundation
