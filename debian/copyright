@@ -1,4 +1,4 @@
-Format: http://dep.debian.net/deps/dep5
+Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: appmenu-qt
 Upstream-Contact: Aurélien Gâteau <agateau@kde.org>
 Source: https://launchpad.net/appmenu-qt
