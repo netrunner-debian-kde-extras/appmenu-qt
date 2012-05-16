@@ -5,8 +5,8 @@ Source: https://launchpad.net/appmenu-qt
 
 
 Files: *
-License: LGPL
 Copyright: Aurélien Gâteau <agateau@kde.org>
+License: LGPL
  This package is free software; you can redistribute it and/or modify
  it under the terms of the GNU Lesser General Public License version 3, as
  published by  the Free Software Foundation
